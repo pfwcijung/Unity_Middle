@@ -49,7 +49,11 @@ public class Player : MonoBehaviour
         lookDir = x * Vector3.right + z * Vector3.forward;
         if(lookDir != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(lookDir);
+            transform.rotation =
+                Quaternion.Slerp(
+                    transform.rotation,
+                    Quaternion.LookRotation(lookDir),
+                    Time.deltaTime * 5f);
         }
     }
 
